@@ -36,7 +36,7 @@ public class ControladorCliente extends HttpServlet {
 	  ClassClienteImp crud=new ClassClienteImp();
 	  List<TblCliente> listadocliente=crud.ListadoCliente();
 	  //INVOCAMOS EL LISTADO DE PRODUCTOS PARA LA VISTA
-	  request.setAttribute("listadodeproductos", listadocliente);
+	  request.setAttribute("listadoclientes", listadocliente);
 	  //redireccionamos
 	  request.getRequestDispatcher("/ListadoClientes.jsp").forward(request, response);
 	} //fin del metodo doget..
@@ -70,14 +70,13 @@ public class ControladorCliente extends HttpServlet {
 		cliente.setNacionalidad(nacionalidad);
 		//invocamos la metodo registrar...
 		crud.RegistrarCliente(cliente);
+		//actualizador listado de clientes	
+		  List<TblCliente> listadocliente=crud.ListadoCliente();
+		  //INVOCAMOS EL LISTADO DE PRODUCTOS PARA LA VISTA
+		  request.setAttribute("listadoclientes", listadocliente);
 		//redireccionamos
 		request.getRequestDispatcher("/ListadoClientes.jsp").forward(request, response);
-		
-		
-			
-		
-		
-		
+
 		
 	}  //fin del metodo dopost...
 

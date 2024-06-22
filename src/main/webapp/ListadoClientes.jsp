@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@taglib uri="java.sun.com/jsp/jstl/core" prefix="c" %>
-
-  <%@taglib uri="java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+    
+    <%@page import="java.util.*" %>
+    <%@page import="model.TblCliente" %>
+    
+    
+  <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+  <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     
 <!DOCTYPE html ">
 <html>
@@ -13,7 +17,11 @@
 <body bgcolor="#c5dec9">
 <h1  align="center">Listado de Clientes Registrados en BD</h1>
 
-<table border="2" aligen="center">
+<h2 align="center">
+<a href="FormRegistrarCliente.jsp">Registrar Cliente</a>
+</h2>
+
+<table border="2" align="center">
 
 <tr>
 <td>Nombre</td>
@@ -24,6 +32,34 @@
 <td>Sexo</td>
 <td>Nacionalidad</td>
 </tr>
+
+<%
+List<TblCliente> listadocliente = (List<TblCliente>)request.getAttribute("listadoclientes");
+//aplicamos una condicion
+if(listadocliente != null){
+	//aplicamos bucle for
+	for(TblCliente lis:listadocliente){
+		%>
+		<tr>
+		<td><%=lis.getIdcliente() %></td>
+		<td><%=lis.getNombre() %></td>
+		<td><%=lis.getApellido() %></td>
+		<td><%=lis.getDni() %></td>
+		<td><%=lis.getEmail() %></td>
+		<td><%=lis.getTelf() %></td>
+		<td><%=lis.getSexo() %></td>
+		<td><%=lis.getNacionalidad() %></td>
+		</tr>
+		
+		<% 
+	}//fin del bucle for...
+	%>
+	<% 
+}//fin de la condicion
+%>
+
 </table>
+
+
 </body>
 </html>
